@@ -9,6 +9,19 @@
   </head>
 
   <body>
+    <!-- 由於 Devise 已經幫我們準備好登入的訊息字串，因此你需要在 Controller 裡面指定，只需要在 View 裡加入程式碼。-->
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+
+    <!-- current_user 是 Devise 定義的 helper method。如果請求進入網頁的人是在登入狀態，它會回傳一個 User instance；若沒有登入，就會回傳 nil。-->
+    <% if current_user %>
+      Hi, <%= current_user.email %>
+      <%= link_to('Sign out', destroy_user_session_path, method: :delete) %>
+      <%= link_to('Change passwords', edit_user_registration_path) %>
+    <% else %>
+      <%= link_to('Sign up', new_user_registration_path) %>
+      <%= link_to('Log in', new_user_session_path) %>
+    <% end %>
     <%= yield %>
   </body>
 </html>
