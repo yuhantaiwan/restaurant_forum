@@ -5,5 +5,6 @@ class Admin::RestaurantsController < ApplicationController
   before_action :authenticate_admin
 
   def index
+    @restaurants = Restaurant.all  # 用 Restaurant.all 撈出所有的餐廳資料並存入 @restaurants 這個實例變數
   end
 end
